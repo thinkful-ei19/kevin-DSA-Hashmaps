@@ -100,7 +100,7 @@ function palindrome(string) {
     if (hashMap.get(string[i]) % 2 === 0) {
       continue
     } else if (counter < 2) {
-      counter ++;
+      counter++;
       if (counter === 2) {
         return false;
       }
@@ -109,6 +109,40 @@ function palindrome(string) {
     }
   }
   return true;
+}
+
+// === ANAGRAM GROUPING ===
+
+function sortWord(string) {
+  string.split('').sort().join('');
+}
+
+function anaGrp(arr) {
+  let ret = [];
+  const hashMap = new HashMap;
+  for (let i = 0; i < arr.length; i++) {
+    for (let k = 0; k < arr[i].length; i++) {
+      let asciiCount = 0;
+      if (asciiCount) {
+        asciiCount += charCodeAt(k);
+      } else {
+        let asciiCount = arr[i].charCodeAt(k);
+      }
+      for (let m = 0; m < hashMap.length; m++) {
+        if (asciiCount === hashMap[m]) {
+          hashMap.set(arr[i], m)
+        } else {
+          hashMap.set(arr[i], m + 1)
+        }
+      }
+    }
+  }
+}
+
+// === SEPARATE CHAINING ===
+
+function sepChain() {
+
 }
 
 
@@ -136,5 +170,9 @@ function main() {
 // ===INVOCATIONS===
 
 main();
-console.log(palindrome('acecarr'));
+// console.log(palindrome('acecarr'));
+console.log(anaGrp(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
+//////// expected output -> [['east', 'teas', 'eats'], ['cars', 'arcs'], ['acre', 'race']]
+// console.log(sepChain(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
+//////// expected output -> [['east', 'teas', 'eats'], ['cars', 'arcs'], ['acre', 'race']]
 
